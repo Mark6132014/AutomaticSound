@@ -3,50 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Movement and Sound Example</title>
-    <style>
-        #movingSquare {
-            width: 100px;
-            height: 100px;
-            background-color: #4CAF50;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transition: all 2s;
-        }
-    </style>
+    <title>Howler.js Autoplay Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 </head>
 <body>
-    <div id="movingSquare"></div>
-    <audio id="myAudio" muted>
-        <source src="https://w3schools.com/graphics/gametheme.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
     <script>
-        var square = document.getElementById('movingSquare');
-        var audio = document.getElementById('myAudio');
+        // Create a new Howl object with autoplay set to true
+        var sound = new Howl({
+            src: ['https://w3schools.com/graphics/gametheme.mp3'],
+            autoplay: true, // Set autoplay to true
+            loop: false,
+            volume: 0.8
+        });
 
-        // Function to move the square and play audio
-        function moveSquareAndPlayAudio() {
-            square.style.top = '80%'; // Move the square down
-            square.style.left = '80%'; // Move the square to the right
-
-            // Try to play the audio after moving the square
-            setTimeout(function() {
-                audio.play().then(function() {
-                    audio.muted = false;
-                    console.log('Audio playback started');
-                }).catch(function(error) {
-                    console.log('Autoplay blocked:', error);
-                });
-            }, 2000); // Delay to match the transition time of the square
-        }
-
-        // Call the function to move the square and play audio on page load
+        // Attempt to play the audio on page load
         window.onload = function() {
-            moveSquareAndPlayAudio();
-        }
+            sound.play().then(function() {
+                console.log('Audio playback started');
+            }).catch(function(error) {
+                console.log('Autoplay blocked:', error);
+            });
+        };
     </script>
 </body>
 </html>
