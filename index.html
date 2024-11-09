@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Howler.js Context Example</title>
+    <title>Howler.js Autoplay Example</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 </head>
 <body>
     <script>
-        // Use Howler's context instead of creating a new one
-        Howler.context = new (window.AudioContext || window.webkitAudioContext)();
-        Howler.autoSuspend = false; // Prevent automatic suspension
-
         // Create a new Howl object with your audio file
         var sound = new Howl({
-            src: ['gametheme.mp3'],
-            autoplay: true,
+            src: ['path/to/yourfile.mp3'],
+            autoplay: true, // Set autoplay to true
             loop: false,
             volume: 0.5
         });
 
-        // Attempt to play the audio on page load
-        window.onload = function() {
-            sound.play().then(function() {
-                console.log('Audio playback started');
-            }).catch(function(error) {
-                console.log('Playback error:', error);
-            });
-        };
+        // Attempt to play the audio immediately
+        sound.play().then(function() {
+            console.log('Audio playback started');
+        }).catch(function(error) {
+            console.log('Autoplay blocked:', error);
+        });
     </script>
 </body>
 </html>
