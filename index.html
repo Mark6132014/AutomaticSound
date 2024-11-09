@@ -4,10 +4,12 @@
       Automatic sound test
     </title>
   </head>
-  <body>
+  <body onload="start()">
     <script>
-     var myMusic = new sound("https://w3schools.com/graphics/gametheme.mp3");
+     function start() {
+       var myMusic = new sound("https://w3schools.com/graphics/gametheme.mp3");
     myMusic.play();
+     }
       function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
@@ -21,9 +23,6 @@
     this.stop = function(){
         this.sound.pause();
     }
-    setTimeout(() => {
-      this.sound.setAttribute("autoplay", "");
-    }, 1000);
 }
     </script>
   </body>
